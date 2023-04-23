@@ -1,0 +1,90 @@
+if(request.getParameter("save") == "save"){
+		if(histroy == null){
+			Cookie newck = new Cookie("searchHistroy",query);
+			newck.setMaxAge(60*60); // 1 hour
+			response.addCookie(newck);
+		}
+		else{
+			String newHistroy = "";
+			for(int i = 0; i < histroy.length; i++){
+				newHistroy += histroy[i] + ";";
+			}
+			newHistroy += query;
+			Cookie newck = new Cookie("searchHistroy",newHistroy);
+			newck.setMaxAge(60*60); // 1 hour
+			response.addCookie(newck);
+		}
+	}
+	out.println("<hr>");
+
+    Cookie ck[] = request.getCookies();
+	if(ck != null){
+		out.println("Search Histroy:");
+		out.println("<br>");
+	} 
+	%>
+
+	<form method="post" action="project.jsp"> 
+		<input type="checkbox" name="clear" value="clear">
+		<input type="submit" value="clear histroy" class="submit-element"> 
+	</form> 
+
+	<%
+	
+	if(request.getParameter("clear")== "clear"){
+		Cookie cookie = null;
+		Cookie[] cookies = null;
+
+		cookies = request.getCookies();
+
+		if( cookies != null ) {
+			for (int i = 0; i < cookies.length; i++) {
+				if(cookies[i].getName().equals("searchHistroy")){
+					cookie = cookies[i];
+					String newHistroy = "";
+					Cookie newck = new Cookie("searchHistroy",newHistroy);
+					newck.setMaxAge(60*60); // 1 hour
+					response.addCookie(newck);
+				}
+			}
+		} 
+	}
+	
+	String[] histroy = null;
+	if(ck != null){
+		for(int i = 0; i < ck.length; i++){
+			if(ck[i].getName().equals("searchHistroy")){
+				if (ck[i].getValue() == ""){
+					break;
+				}
+				histroy = ck[i].getValue().split(";");
+				for(int j = histroy.length; j >= 0; j--){
+					out.println(histroy[j]);
+					out.println("<br>");
+				}
+			}
+		}
+	}
+
+
+
+    out.println("<br>");
+out.println(request.getParameter("save"));
+out.println("<br>");
+out.println(request.getParameter("clear"));
+out.println("<br>");
+
+if(request.getParameter("clear")== "clear"){
+	Cookie cookie = null;
+	Cookie[] cookies = null;
+
+	cookies = request.getCookies();
+
+	if( cookies != null ) {
+		for (int i = 0; i < cookies.length; i++) {
+			cookie = cookies[i];
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+	} 
+}

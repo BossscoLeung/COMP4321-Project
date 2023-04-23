@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath} % for math notation
+\usepackage{enumerate} % for customizing lists
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+
+\title{COMP 4321 - Project}
+\author{Leung Ka Wa, 20770807, kwleungau@connect.ust.hk}
+\date{}
+
+\begin{document}
+    \maketitle
+    \section*{Program code Structure}
+        \subsection*{java source code}
+            \begin{itemize}
+                \item \textbf{Crawler.java} - Crawler class
+                \item \textbf{StopStem.java} - StopStem class
+                \item \textbf{URLIndex.java} - URLIndex class, use to manipulate the URL.db
+                \item \textbf{WordIndex.java} - WordIndex class, use to manipulate the WordDB.db
+                \item \textbf{Tester.java} - Tester class, use to test and run the program
+                \item \textbf{SearchEngine.java} - SearchEngine class, use to perform IR.
+            \end{itemize}
+        \subsection*{Library}
+            No extra library from lab is used in this project.
+
+    \section*{Design of the jdbm database scheme}
+
+    \subsection*{URL.db}
+    It contain of 4 objects. Each of them is a HTree.
+    \begin{itemize}
+        \item \textbf{PageID} - Store the URL and its pageID. \\[0.4em]
+        (\textbf{String})URL = (\textbf{UUID})pageID. Example:\\[0.4em]
+        http://library.hkust.edu.hk/events/staff-workshops/ = b9275b04-58a1-3f4f-ab38-606e30a198a8 \\[0.4em]
+        Design decision: A ID mapping. 
+
+        \item \textbf{ParentToChilden} - Store the parent to children relationship. \\[0.4em]
+        (\textbf{UUID})parentID = Vector$\langle$\textbf{UUID}$\rangle$(childID). Example:\\[0.4em]
+        5ed456f8-36f3-3ca2-8451-62696e13f7fc = [b9275b04-58a1-3f4f-ab38-606e30a198a8, 9e4a5a31-dbb7-39d0-82ab-8d8b37595564, bd93a542-88ec-3b29-b739-9faf1ffc3bdc, \dots] \\[0.4em]
+        Design decision: Easly can get the out link of a page for later use, e.g. PageRank, hub weight, authority weight and HITS.
+        
+        \item \textbf{ChildToParents} - Store the child to parents relationship. \\[0.4em]
+        (\textbf{UUID})childID = Vector$\langle$\textbf{UUID}$\rangle$(parentID). Example:\\[0.4em]
+        5ed456f8-36f3-3ca2-8451-62696e13f7fc = [b9275b04-58a1-3f4f-ab38-606e30a198a8, 9e4a5a31-dbb7-39d0-82ab-8d8b37595564, bd93a542-88ec-3b29-b739-9faf1ffc3bdc, \dots] \\[0.4em]
+        Design decision: Easly can get the in link of a page for later use, e.g. PageRank, hub weight, authority weight and HITS.
+
+        \item \textbf{PageToTitle} - Store the pageID and its originial title. \\[0.4em]
+        (\textbf{UUID})pageID = (\textbf{String})title. Example:\\[0.4em]
+        bd93a542-88ec-3b29-b739-9faf1ffc3bdc = This is the Title\\[0.4em]
+        Design decision: Store the whole title for display use.
+
+        \item \textbf{PageMeta} - Store the pageID and its metadata. My self defined class-\textbf{PageMeta} have 4 attributes. \\[0.4em]
+        \textbf{Date} lastModified;
+        \textbf{int} pageSize;
+        \textbf{int} pageSizeAfterStopStem;
+        \textbf{int} pageSizeUnique
+
+        (\textbf{UUID})pageID = (\textbf{PageMeta})data. Example:\\[0.4em]
+        bd93a542-88ec-3b29-b739-9faf1ffc3bdc = (\textbf{PageMeta})\{lastModified = 2018-11-30 00:00:00.0, pageSize = 100, pageSizeAfterStopStem = 50, pageSizeUnique = 30\}\\[0.4em]
+        Design decision: Store the metadata of the page for later algorithm, e.g. tfxidf, also the class can be easily extended to store more metadata.
+    \end{itemize}
+
+
+    \subsection*{WordDB.db}
+    It contain of 4 objects. Each of them is a HTree.
+    \begin{itemize}
+        \item \textbf{WordID} - Store the word and its ID. \\[0.4em]
+        (\textbf{String})word = (\textbf{UUID})wordID. Example:\\[0.4em]
+        intellig = b9275b04-58a1-3f4f-ab38-606e30a198a8 \\[0.4em]
+        Design decision: A ID mapping.
+        \item \textbf{Inverted} - Store the wordID and posting list. \\[0.4em]
+        (\textbf{UUID})wordID = Map$\langle$(\textbf{UUID})pageID, Vector$\langle$\textbf{Integer}$\rangle$(position)$\rangle$.
+        Example:\\[0.4em]
+        b9275b04-58a1-3f4f-ab38-606e30a198a8 = \{9bfc960c-53e4-3faf-8623-b44c251584c1=[1, 5, 10], 114471e0-e3dd-39d8-aa8a-11f77c85a7fa=[50, 60], 8019de9c-bcf5-3600-814b-53ed90ab33bb=[10], \dots \}\\[0.4em]
+        Design decision: Store the posting list of the word for tfxidf and phase search. Also, finding the document with highest word frequency is easy.
+        \item \textbf{Forward} - Store the pageID and its forward word list. \\[0.4em]
+        (\textbf{UUID})pageID = Map$\langle$(\textbf{UUID})wordID, Vector$\langle$\textbf{Integer}$\rangle$(position)$\rangle$.
+        Example:\\[0.4em]
+        b9275b04-58a1-3f4f-ab38-606e30a198a8 = \{9bfc960c-53e4-3faf-8623-b44c251584c1=[1, 5, 10], 114471e0-e3dd-39d8-aa8a-11f77c85a7fa=[50, 60], 8019de9c-bcf5-3600-814b-53ed90ab33bb=[10], \dots \}\\[0.4em]
+        Design decision: Store the forward word list of the page for later algorithm, e.g. tfxidf. Finding the words and their position and frequency in a document is easy.
+        \item \textbf{TitleInverted} - Store the wordID and posting list of title. \\[0.4em]
+        (\textbf{UUID})wordID = Map$\langle$(\textbf{UUID})pageID, Vector$\langle$\textbf{Integer}$\rangle$(position)$\rangle$.
+        Example:\\[0.4em]
+        b9275b04-58a1-3f4f-ab38-606e30a198a8 = \{9bfc960c-53e4-3faf-8623-b44c251584c1=[1, 5, 10], 114471e0-e3dd-39d8-aa8a-11f77c85a7fa=[50, 60], 8019de9c-bcf5-3600-814b-53ed90ab33bb=[10], \dots \}\\[0.4em]
+        Design decision: Store the posting list of the word in title to favor matches in title.
+    \end{itemize}
+
+    \section*{Running the program}
+    \subsection*{How to run the program}
+    
+        The Tester class is the main class of this program. Pass command line argument to it to run the program. \\[0.4em]
+        As I am using VS code to develop this project, I was just simply using the java extension and run the program without mannually compile the project. 
+        For me the command line is:
+        \begin{lstlisting}[language=bash,breaklines=true]
+            /usr/bin/env /Users/boscoleung/opt/anaconda3/bin/java @/var/folders/f1/6mvnwxt109n9rswystbch0t40000gn/T/cp_dh97avm16bvprxybpew6los8v.argfile Tester <argument>
+        \end{lstlisting}
+
+        If you want to compile the project mannually, you can run the following command (work on mac):
+
+        \centerline{\textbf{javac -cp \texttt{"}:lib/*\texttt{"} -d bin \$(find . -name \texttt{"}*.java\texttt{"})}} 
+        \centerline{\textbf{javac -cp \texttt{"}:lib/*\texttt{"} -d bin \$(find . -path ./apache-tomcat-10.1.6 -prune -o -name \texttt{"}*.java\texttt{"} -print)}}
+        A bin folder containing all the classes will be created. \\[0.4em]
+
+        Then run the program with the following command:
+    
+        \centerline{\textbf{java -cp \texttt{"}.:bin:lib/*\texttt{"} Tester $<$argument$>$}}
+
+        \begin{itemize}
+            \item \textbf{-runCrawler} - Run the crawler, progress will be printed to the console. The starting URL and the number of pages to crawl can be modified in the Tester.runCrawler().
+            \item \textbf{-printSpiderResult} - Output the result of the crawler to spider\_result.txt. This may moment to produce the complete result.
+            \item \textbf{-printAllURLdb} - Output all the data in the URL.db to AllURLdb.txt.
+            \item \textbf{-printPageTitle} - Output all the data in the URL.db PageToTitle to PageTitle.txt.
+            \item \textbf{-printURLPageID} - Output all the data in the URL.db PageID to URLPageID.txt.
+            \item \textbf{-printPageMeta} - Output all the data in the URL.db PageMeta to PageMeta.txt.
+            \item \textbf{-printParentToChilden} - Output all the data in the URL.db ParentToChildren to ParentToChildren.txt.
+            \item \textbf{-printChildToParents} - Output all the data in the URL.db ChildToParents to ChildToParents.txt.
+            \item \textbf{-printAllWordDB} - Output all the data in the WordDB.db to AllWordDB.txt.
+            \item \textbf{-printWordID} - Output all the data in the WordDB.db WordID to WordID.txt.
+            \item \textbf{-printInverted} - Output all the data in the WordDB.db Inverted to Inverted.txt.
+            \item \textbf{-printTitleInverted} - Output all the data in the WordDB.db TitleInverted to TitleInverted.txt.
+            \item \textbf{-printForward} - Output all the data in the WordDB.db Forward to Forward.txt.
+        \end{itemize}
+
+    \section*{Special Notice}
+        \subsection*{Word Extraction}
+            I have set 
+            \begin{lstlisting}[language=Java]
+                sb.setLinks(false)
+            \end{lstlisting} 
+            in the word extraction part, which is different from the lab. \\[0.4em] 
+            Since if it is set to true, it will create some keywords like $httpslibraryhkusteduhkaboutushoursservicepointshoursservic$ and $httpslibraryhkusteduhkhelpforalumnialumni$, it doesn't seem to make sense. 
+        \subsection*{Word Processing}
+            Stop word removal and transformation into stems using the Porter's algorithm have implemented in this phase.
+        \subsection*{Crawler Strategy}
+            I have implemented the BFS strategy in this phase. And the crawler will pick the next URL according the occurrence order in the webpage.
+        \subsection*{Page Last Modified Date and Page Size}
+            Currently I am using the following method to get the last modified date of the page:
+            \begin{lstlisting}[language=Java]
+                url.openConnection().getLastModified();
+            \end{lstlisting}
+            But it seems that the last modified date may missing. In this case, the last modified date will be set to 
+            \begin{lstlisting}[language=Java]
+                url.openConnection().getDate();
+            \end{lstlisting}
+            which is the date of accessing. \\[0.4em]
+            For the page size, I am using the following method to get the page size:
+            \begin{lstlisting}[language=Java]
+                url.openConnection().getContentLength();
+            \end{lstlisting}
+            If the page size is missing, I will use the page size value method obtain in lab 2 instead.
+        
+            
+\end{document}

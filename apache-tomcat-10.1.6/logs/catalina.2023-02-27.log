@@ -1,0 +1,94 @@
+27-Feb-2023 01:22:03.380 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.6
+27-Feb-2023 01:22:03.384 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 19 2023 13:23:52 UTC
+27-Feb-2023 01:22:03.384 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.6.0
+27-Feb-2023 01:22:03.384 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+27-Feb-2023 01:22:03.384 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            13.2.1
+27-Feb-2023 01:22:03.384 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+27-Feb-2023 01:22:03.384 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Users/boscoleung/opt/anaconda3
+27-Feb-2023 01:22:03.385 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.13+7-b1751.21
+27-Feb-2023 01:22:03.385 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            JetBrains s.r.o.
+27-Feb-2023 01:22:03.385 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:22:03.385 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/conf/logging.properties
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:22:03.394 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/temp
+27-Feb-2023 01:22:03.396 資訊 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/boscoleung/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+27-Feb-2023 01:22:03.537 資訊 [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:22:03.556 資訊 [main] org.apache.catalina.startup.Catalina.load Server initialization in [295] milliseconds
+27-Feb-2023 01:22:03.578 資訊 [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+27-Feb-2023 01:22:03.578 資訊 [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.6]
+27-Feb-2023 01:22:03.583 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/docs]
+27-Feb-2023 01:22:03.795 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/docs] has finished in [212] ms
+27-Feb-2023 01:22:03.796 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/manager]
+27-Feb-2023 01:22:03.813 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/manager] has finished in [18] ms
+27-Feb-2023 01:22:03.813 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/lab4]
+27-Feb-2023 01:22:03.826 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/lab4] has finished in [12] ms
+27-Feb-2023 01:22:03.826 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/examples]
+27-Feb-2023 01:22:03.955 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/examples] has finished in [129] ms
+27-Feb-2023 01:22:03.955 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/ROOT]
+27-Feb-2023 01:22:03.964 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/ROOT] has finished in [9] ms
+27-Feb-2023 01:22:03.964 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/host-manager]
+27-Feb-2023 01:22:03.977 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/host-manager] has finished in [13] ms
+27-Feb-2023 01:22:03.980 資訊 [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:22:03.989 資訊 [main] org.apache.catalina.startup.Catalina.start Server startup in [432] milliseconds
+27-Feb-2023 01:28:26.709 資訊 [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+27-Feb-2023 01:28:26.709 資訊 [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:28:26.711 資訊 [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+27-Feb-2023 01:28:26.725 資訊 [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:28:26.738 資訊 [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:33:57.177 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.6
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 19 2023 13:23:52 UTC
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.6.0
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            13.2.1
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Users/boscoleung/opt/anaconda3
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.13+7-b1751.21
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            JetBrains s.r.o.
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:33:57.180 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/conf/logging.properties
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+27-Feb-2023 01:33:57.188 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+27-Feb-2023 01:33:57.189 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+27-Feb-2023 01:33:57.189 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:33:57.189 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6
+27-Feb-2023 01:33:57.189 資訊 [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/temp
+27-Feb-2023 01:33:57.190 資訊 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/boscoleung/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+27-Feb-2023 01:33:57.312 資訊 [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:33:57.325 資訊 [main] org.apache.catalina.startup.Catalina.load Server initialization in [259] milliseconds
+27-Feb-2023 01:33:57.344 資訊 [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+27-Feb-2023 01:33:57.344 資訊 [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.6]
+27-Feb-2023 01:33:57.349 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/docs]
+27-Feb-2023 01:33:57.519 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/docs] has finished in [170] ms
+27-Feb-2023 01:33:57.519 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/manager]
+27-Feb-2023 01:33:57.538 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/manager] has finished in [19] ms
+27-Feb-2023 01:33:57.538 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/lab4]
+27-Feb-2023 01:33:57.552 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/lab4] has finished in [14] ms
+27-Feb-2023 01:33:57.552 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/examples]
+27-Feb-2023 01:33:57.702 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/examples] has finished in [150] ms
+27-Feb-2023 01:33:57.702 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/ROOT]
+27-Feb-2023 01:33:57.711 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/ROOT] has finished in [8] ms
+27-Feb-2023 01:33:57.711 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/host-manager]
+27-Feb-2023 01:33:57.722 資訊 [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Lab/lab4/apache-tomcat-10.1.6/webapps/host-manager] has finished in [11] ms
+27-Feb-2023 01:33:57.726 資訊 [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:33:57.732 資訊 [main] org.apache.catalina.startup.Catalina.start Server startup in [406] milliseconds
+27-Feb-2023 01:58:10.241 資訊 [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+27-Feb-2023 01:58:10.242 資訊 [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:58:10.244 資訊 [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+27-Feb-2023 01:58:10.258 資訊 [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+27-Feb-2023 01:58:10.270 資訊 [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
