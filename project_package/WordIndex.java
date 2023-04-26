@@ -1,3 +1,5 @@
+package project_package;
+
 import jdbm.RecordManager;
 import jdbm.RecordManagerFactory;
 import jdbm.htree.HTree;
@@ -17,14 +19,14 @@ import java.io.IOException;
 
 
 public class WordIndex{
-
+	
 	private RecordManager recman;
 	private HTree hashtable_WordID;
 	private HTree hashtable_Inverted;
 	private HTree hashtable_Forward;
 	private HTree hashtable_TitleInverted;
 
-	WordIndex(String recordmanager) throws IOException{
+	public WordIndex(String recordmanager) throws IOException{
 		recman = RecordManagerFactory.createRecordManager(recordmanager);
 		long recid;
 		
@@ -69,6 +71,10 @@ public class WordIndex{
 		recman.commit();
 		recman.close();				
 	} 
+
+	public void close() throws IOException{
+		recman.close();
+	}
 
 	/**
 	 * Function for hashtable_WordID.  
@@ -268,10 +274,6 @@ public class WordIndex{
 
 		while( (key = (UUID)iter.next())!=null){
 			Map<UUID, Vector<Integer>> dictionary = (Map<UUID, Vector<Integer>>) hashtable_Forward.get(key);
-			// String postingString = "";
-			// for (Map.Entry<UUID, Integer> entry : dictionary.entrySet()) {
-			// 	postingString = postingString + " word-"+ entry.getKey().toString().substring(24) +"-" + entry.getValue();
-			// }
 			System.out.println(key + " = "+ dictionary);
 		}	
 	}
@@ -286,11 +288,6 @@ public class WordIndex{
 
 		while( (key = (UUID)iter.next())!=null){
 			Map<UUID, Vector<Integer>> dictionary = (Map<UUID, Vector<Integer>>) hashtable_Inverted.get(key);
-			// String postingString = "";
-			// for (Map.Entry<UUID, Integer> entry : dictionary.entrySet()) {
-			// 	postingString = postingString + " doc-"+ entry.getKey().toString().substring(24) +"-" + entry.getValue();
-			// }
-			// System.out.println(key.toString().substring(24) + " =" + postingString);
 			System.out.println(key + " = "+ dictionary);
 		}	
 	}
@@ -305,11 +302,6 @@ public class WordIndex{
 
 		while( (key = (UUID)iter.next())!=null){
 			Map<UUID, Vector<Integer>> dictionary = (Map<UUID, Vector<Integer>>) hashtable_TitleInverted.get(key);
-			// String postingString = "";
-			// for (Map.Entry<UUID, Integer> entry : dictionary.entrySet()) {
-			// 	postingString = postingString + " doc-"+ entry.getKey().toString().substring(24) +"-" + entry.getValue();
-			// }
-			// System.out.println(key.toString().substring(24) + " =" + postingString);
 			System.out.println(key + " = "+ dictionary);
 		}	
 	}
@@ -325,30 +317,6 @@ public class WordIndex{
 			System.out.println(key + " = " + hashtable_WordID.get(key));
 		}	
 	}
-	
-	/**
-     * Function for hashtable_WordID and hashtable_Forward.  
-     * delete a word from a page.
-     */
-	// public void delWordFromPage(UUID pageID, UUID wordID) throws IOException{
-	// 	Map<UUID, Integer> forwardList = getForwardList(pageID);
-	// 	if (forwardList != null){
-	// 		forwardList.remove(wordID);
-	// 		if (forwardList.isEmpty())
-	// 			hashtable_Forward.remove(pageID);
-	// 		else
-	// 			hashtable_Forward.put(pageID, forwardList);	
-	// 	}
-
-	// 	Map<UUID, Integer> invertedList = getInvertedList(wordID);
-	// 	if (invertedList != null){
-	// 		invertedList.remove(pageID);
-	// 		if (invertedList.isEmpty())
-	// 			hashtable_Inverted.remove(wordID);
-	// 		else
-	// 			hashtable_Inverted.put(wordID, invertedList);
-	// 	}
-	// }
 
 	/**
 	 * Function for hashtable_WordID and hashtable_Forward.  
@@ -372,26 +340,4 @@ public class WordIndex{
 		hashtable_Forward.remove(pageID);
 	}
 
-	/**
-	 * Function for hashtable_WordID and hashtable_Forward and hashtable_Inverted.  
-	 * delete a word
-	 */
-	// public void delWord(UUID wordID) throws IOException{
-	// 	Map<UUID, Integer> invertedList = getInvertedList(wordID);
-	// 	if (invertedList != null){
-	// 		for (Map.Entry<UUID, Integer> entry : invertedList.entrySet()) {
-	// 			Map<UUID, Integer> forwardList = getForwardList(entry.getKey());
-	// 			if (forwardList == null)
-	// 				continue;
-	// 			forwardList.remove(wordID);
-	// 			if (forwardList.isEmpty())
-	// 				hashtable_Forward.remove(entry.getKey());
-	// 			else
-	// 				hashtable_Forward.put(entry.getKey(), forwardList);
-	// 		}
-	// 	}
-		
-	// 	hashtable_Inverted.remove(wordID);
-	// 	hashtable_WordID.remove(getWord(wordID));
-	// }
 }

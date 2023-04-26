@@ -1,44 +1,13 @@
+package project_package;
+
 import jdbm.RecordManager;
 import jdbm.RecordManagerFactory;
 import jdbm.htree.HTree;
 import jdbm.helper.FastIterator;
 import java.util.Vector;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
-
-class PageMeta implements Serializable{
-    private Date lastModified;
-    private int pageSize;
-    private int pageSizeAfterStopStem;
-    private int pageSizeUnique;
-
-    PageMeta(Date _lastModified, int _pageSize, int _pageSizeAfterStopStem, int _pageSizeUnique){
-        lastModified = _lastModified;
-        pageSize = _pageSize;
-        pageSizeAfterStopStem = _pageSizeAfterStopStem;
-        pageSizeUnique = _pageSizeUnique;
-    }
-
-    public Date getLastModified(){
-        return lastModified;
-    }
-
-    public int getPageSize(){
-        return pageSize;
-    }
-
-    public int getPageSizeAfterStopStem(){
-        return pageSizeAfterStopStem;
-    }
-
-    public int getPageSizeUnique(){
-        return pageSizeUnique;
-    }
-
-}
 
 public class URLIndex
 {
@@ -47,9 +16,10 @@ public class URLIndex
     private HTree hashtable_ParentToChilden;
     private HTree hashtable_ChildToParents;
     private HTree hashtable_PageToTitle;
-    private HTree hashtable_PageMeta;
+    private HTree hashtable_LastModified;
+    private HTree hashtable_PageSize;
 
-	URLIndex(String recordmanager) throws IOException
+	public URLIndex(String recordmanager) throws IOException
 	{
 		recman = RecordManagerFactory.createRecordManager(recordmanager);
 		long recid;
@@ -86,12 +56,20 @@ public class URLIndex
 			recman.setNamedObject("PageToTitle", hashtable_PageToTitle.getRecid() );
 		}
 
-        recid = recman.getNamedObject("PageMeta");
+        recid = recman.getNamedObject("LastModified");
         if (recid != 0)
-            hashtable_PageMeta = HTree.load(recman, recid);
+            hashtable_LastModified = HTree.load(recman, recid);
         else{
-            hashtable_PageMeta = HTree.createInstance(recman);
-            recman.setNamedObject("PageMeta", hashtable_PageMeta.getRecid() );
+            hashtable_LastModified = HTree.createInstance(recman);
+            recman.setNamedObject("LastModified", hashtable_LastModified.getRecid() );
+        }
+
+        recid = recman.getNamedObject("PageSize");
+        if (recid != 0)
+            hashtable_PageSize = HTree.load(recman, recid);
+        else{
+            hashtable_PageSize = HTree.createInstance(recman);
+            recman.setNamedObject("PageSize", hashtable_PageSize.getRecid() );
         }
 	}
 
@@ -103,6 +81,10 @@ public class URLIndex
 		recman.commit();
 		recman.close();				
 	} 
+
+    public void close() throws IOException{
+        recman.close();
+    }
 
     /**
      * Function for hashtable_PageID.  
@@ -121,12 +103,13 @@ public class URLIndex
                 // lastModified is null and the URL is already in the index.
                 return 3;
             }
-            java.lang.Object meta = hashtable_PageMeta.get(value);
-            if (meta == null){
+            // java.lang.Object meta = hashtable_PageMeta.get(value);
+            java.lang.Object getlastModified = hashtable_LastModified.get(value);
+            if (getlastModified == null){
                 // The page is already in the index but not yet indexing the word.
                 return 2;
             }
-            if ( ((PageMeta)meta).getLastModified().compareTo(lastModified) < 0){
+            if ( ((Date)getlastModified).compareTo(lastModified) < 0){
                 // The page is already in the index but need update.
                 return 2;
             }
@@ -161,27 +144,54 @@ public class URLIndex
         return (String) hashtable_PageToTitle.get(pageID);
     }
 
-    /**
-     * Function for hashtable_PageMeta.  
-     * add the meta data of the page.
+    /*
+     * Function for hashtable_LastModified.
+     * add the last modified date of the page.
      * @param pageID The page ID.
      * @param lastModified The last modified date of the page.
-     * @param pageSize The size of the page.
-     * @param pageSizeAfterStopStem The size of the page after stop word and stemming.
      */
-    public void addPageMeta(UUID pageID, Date lastModified, int pageSize, int pageSizeAfterStopStem, int pageSizeUnique) throws IOException{
-        PageMeta pageMeta = new PageMeta(lastModified, pageSize, pageSizeAfterStopStem, pageSizeUnique);
-        hashtable_PageMeta.put(pageID, pageMeta);
+    public void addLastModified(UUID pageID, Date lastModified) throws IOException{
+        hashtable_LastModified.put(pageID, lastModified);
     }
 
-    /**
-     * Function for hashtable_PageMeta.  
-     * Get the meta data of the page.
+    /*
+     * Function for hashtable_LastModified.
+     * Get the last modified date of the page.
      * @param pageID The page ID.
-     * @return The meta data of the page.
+     * @return The last modified date of the page.
      */
-    public PageMeta getPageMeta(UUID pageID) throws IOException{
-        return (PageMeta) hashtable_PageMeta.get(pageID);
+    public Date getLastModified(UUID pageID) throws IOException{
+        return (Date) hashtable_LastModified.get(pageID);
+    }
+
+    /*
+     * Function for hashtable_PageSize.
+     * add the size of the page.
+     * @param pageID The page ID.
+     * @param pageSize The size of the page.
+     */
+    public void addPageSize(UUID pageID, int pageSize) throws IOException{
+        hashtable_PageSize.put(pageID, pageSize);
+    }
+
+    /*
+     * Function for hashtable_PageSize.
+     * Get the size of the page.
+     * @param pageID The page ID.
+     * @return The size of the page.
+     */
+    public int getPageSize(UUID pageID) throws IOException{
+        return (int) hashtable_PageSize.get(pageID);
+    }
+
+    /*
+     * Function for hashtable_PageMeta.
+     * Get the meta data of the page in string format.
+     * @param pageID The page ID.
+     * @return The meta data of the page in string format.
+     */
+    public String getPageMetaString(UUID pageID) throws IOException{
+        return "Last modified date: "+ getLastModified(pageID).toString() + ", page size: " + getPageSize(pageID);
     }
 
     /**
@@ -350,11 +360,11 @@ public class URLIndex
      * Function for hashtable_PageMeta.  
      * Print all page and its Metadata.
      */
-    public void printAllPageMeta() throws IOException{
-        FastIterator iter = hashtable_PageMeta.keys();
+    public void printAllPageMeta() throws IOException{	
+        FastIterator iter = hashtable_LastModified.keys();
         UUID key;
         while( (key = (UUID)iter.next())!=null){
-			System.out.println(key + " = " + ((PageMeta)hashtable_PageMeta.get(key)).getLastModified() + "; Size of page " + ((PageMeta)hashtable_PageMeta.get(key)).getPageSize()+"; Size of page after stop and stem " + ((PageMeta)hashtable_PageMeta.get(key)).getPageSizeAfterStopStem()+"; Size of unique word " + ((PageMeta)hashtable_PageMeta.get(key)).getPageSizeUnique());
+			System.out.println(key + " = " + getLastModified(key) + "; Size of page " + getPageSize(key));
 		}	
     } 
 
@@ -397,7 +407,8 @@ public class URLIndex
         hashtable_ChildToParents.remove(pageID);
         hashtable_ParentToChilden.remove(pageID);
         hashtable_PageToTitle.remove(pageID);
-        hashtable_PageMeta.remove(pageID);
+        hashtable_LastModified.remove(pageID);
+        hashtable_PageSize.remove(pageID);
     }
 
     /**
@@ -422,6 +433,7 @@ public class URLIndex
     
         hashtable_ParentToChilden.remove(pageID);
         hashtable_PageToTitle.remove(pageID);
-        hashtable_PageMeta.remove(pageID);
+        hashtable_LastModified.remove(pageID);
+        hashtable_PageSize.remove(pageID);
     }
 }

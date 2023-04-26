@@ -1,3 +1,5 @@
+package project_package;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,8 +47,6 @@ public class SearchEngine {
             // search for phase search
             Map<UUID, Integer> pageContainPhase = getPageContainPhaseWords();
             Map<UUID, Integer> pageContainPhase_title = getPageContainPhaseWordsInTitle();
-            // System.out.println("pageContainPhase: " + pageContainPhase + " " + pageContainPhase.size());
-            // System.out.println("pageContainPhase_title: " + pageContainPhase_title + " " + pageContainPhase_title.size());
             if (pageContainPhase == null){
                 return null;
             }
@@ -64,8 +64,9 @@ public class SearchEngine {
                     Map<UUID, Double> pageIDTFIDF = calTFIDFOfWordInPage(wordID);
                     Vector<UUID> removelist = new Vector<UUID>();
                     for (UUID pageID : pageIDTFIDF.keySet()) {
-                        if (isTitleContainWord(pageID, wordID)) { // favor title contain word (1.5)
-                            pageIDTFIDF.put(pageID, pageIDTFIDF.get(pageID)*1.5);
+                        int occurence = getTitleContainWord(pageID, wordID);
+                        if (occurence>0) { // favor title contain word (1.5*occurence)
+                            pageIDTFIDF.put(pageID, pageIDTFIDF.get(pageID)*1.5*occurence);
                         }
                         if(!allowedPage.contains(pageID)){
                             removelist.add(pageID);
@@ -109,10 +110,10 @@ public class SearchEngine {
 
             for (UUID wordID : queryTFIDF.keySet()) {
                 Map<UUID, Double> pageIDTFIDF = calTFIDFOfWordInPage(wordID);
-                // favor title contain word (1.5)
                 for (UUID pageID : pageIDTFIDF.keySet()) {
-                    if (isTitleContainWord(pageID, wordID)) {
-                        pageIDTFIDF.put(pageID, pageIDTFIDF.get(pageID)*1.5);
+                    int occurence = getTitleContainWord(pageID, wordID);
+                    if (occurence>0) { // favor title contain word (1.5*occurence)
+                        pageIDTFIDF.put(pageID, pageIDTFIDF.get(pageID)*1.5*occurence);
                     }
                 }
                 pageTFIDF.put(wordID, pageIDTFIDF);
@@ -133,6 +134,9 @@ public class SearchEngine {
 
         unsortedMap = log2Normaliztion(unsortedMap);
         Map<UUID, Double> sortedTreeMap = sortByValue(unsortedMap);
+
+        this.urlIndex.close();
+        this.wordIndex.close();
         return sortedTreeMap;
     }
 
@@ -199,17 +203,10 @@ public class SearchEngine {
             if (positions.size() != wordUuids.size()) {
                 continue;
             }
-            // System.out.println("positions: " + positions);
             int count = countContinuousSequence(positions);
-            // System.out.println("body count: " + count);
             if (count > 0) {
                 pageContainPhaseWordsWithcount.put(page, count);
             }
-            // else{
-            //     System.out.println("enter");
-            //     pageContainPhaseWords.remove(page);
-            //     System.out.println("exit");
-            // }
         }
 
         return pageContainPhaseWordsWithcount.size()==0?null:pageContainPhaseWordsWithcount;
@@ -245,12 +242,10 @@ public class SearchEngine {
 
         // check pageContainPhaseWords one by one
         for (UUID page : pageContainPhaseWords){
-            // System.out.println("enter page title: " + page);
             Vector<Vector<Integer>> positions = new Vector<Vector<Integer>>();
             for(UUID wordID : wordUuids){
                 Vector<Integer> value = this.wordIndex.getTitleInvertedList(wordID).get(page);
                 if (value == null) {
-                    // pageContainPhaseWords.remove(page);
                     break;
                 }
                 positions.add(value);
@@ -259,13 +254,9 @@ public class SearchEngine {
                 continue;
             }
             int count = countContinuousSequence(positions);
-            // System.out.println("title count: " + count);
             if (count > 0) {
                 pageContainPhaseWordsWithcount.put(page, count);
             }
-            // else{
-            //     pageContainPhaseWords.remove(page);
-            // }
         }
 
         return pageContainPhaseWordsWithcount.size()==0?null:pageContainPhaseWordsWithcount;
@@ -484,28 +475,20 @@ public class SearchEngine {
             int max_tf = Collections.max(wordfrequencyMap.values());
             int tf = pageContainPhase.get(pageID);
             int df = pageContainPhase.size();
-            double tfidf = (0.5 + 0.5*tf/max_tf)*log2(1+N/df);
+            double tfidf = (0.5 + 0.5*tf/max_tf)*log2(1+N/df) * tf * 1.25;
             returnMap.put(pageID, tfidf);
         }
 
         return returnMap;
     }
 
-    private boolean isTitleContainWord(UUID pageID, UUID wordID) throws IOException{
+    private int getTitleContainWord(UUID pageID, UUID wordID) throws IOException{
         Map<UUID, Vector<Integer>> doclist = this.wordIndex.getTitleInvertedList(wordID);
-        if (doclist == null) return false;
-        if (doclist.containsKey(pageID)) return true;
-        return false;
-    }
-
-    private Map<UUID, Double> normalizeScore(double maxScore, Map<UUID, Double> scoreMap){
-        Map<UUID, Double> returnMap = new HashMap<UUID, Double>();
-        for (UUID pageID : scoreMap.keySet()){
-            double score = scoreMap.get(pageID);
-            double normalizedScore = score/maxScore;
-            returnMap.put(pageID, normalizedScore);
+        if (doclist == null) return 0;
+        if (doclist.containsKey(pageID)){
+            return doclist.get(pageID).size();
         }
-        return returnMap;
+        return 0;
     }
 
     private Map<UUID, Double> log2Normaliztion(Map<UUID, Double> scoreMap){

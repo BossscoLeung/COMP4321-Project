@@ -1,3 +1,5 @@
+package project_package;
+
 import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,10 +14,23 @@ import org.htmlparser.beans.StringBean;
 
 public class Tester{
 
-    public static void runCrawler() throws IOException{
-        String url = "https://cse.hkust.edu.hk/";
-        url = "https://www.cse.ust.hk/~kwtleung/COMP4321/testpage.htm";
-        int maxPage = 300;
+    public static void runCrawler(String inputURL, int _Numpage) throws IOException{
+        String url;
+        if(inputURL == null){
+            url = "https://www.cse.ust.hk/~kwtleung/COMP4321/testpage.htm";
+        }
+        else{
+            url = inputURL;
+        }
+
+        int maxPage;
+        if(_Numpage == 0){
+            maxPage = 300;
+        }
+        else{
+            maxPage = _Numpage;
+        }
+
         Crawler crawler = new Crawler();
         crawler.runCrawler(url, maxPage);
     }
@@ -100,7 +115,8 @@ public class Tester{
         for (UUID pageID : proceedPage){
             System.out.println(urlIndex.getPageTitle(pageID));
             System.out.println(urlIndex.getPageURL(pageID));
-            System.out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + "; Size of page: " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize()+"; words after stop and stem: " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSizeAfterStopStem()+"; Number of unique word: " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSizeUnique());
+            // System.out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + "; Size of page: " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize()+"; words after stop and stem: " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSizeAfterStopStem()+"; Number of unique word: " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSizeUnique());
+            System.out.println(urlIndex.getPageMetaString(pageID));
             Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, displayNum);
 
             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
@@ -154,8 +170,17 @@ public class Tester{
 
         switch (args[0]){
             case "-runCrawler":
-                // setOutput("CrawlerResult.txt");
-                runCrawler();
+                long startTime = System.currentTimeMillis();
+
+                try {
+                    runCrawler(args[1], Integer.parseInt(args[2]));
+                } catch (Exception e) {
+                    runCrawler(null, 0);
+                }
+                
+                long endTime = System.currentTimeMillis();
+                long totalTime = (endTime - startTime)/1000;
+                System.out.println("Total crawlering time: " + totalTime + " seconds");
                 break;
             case "-printAllURLdb":
                 setOutput("AllURLdb.txt");

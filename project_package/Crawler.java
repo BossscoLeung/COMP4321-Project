@@ -1,3 +1,5 @@
+package project_package;
+
 import java.util.Vector;
 import java.util.stream.Collectors;
 
@@ -108,45 +110,6 @@ class Tools {
 		} catch (Exception e) {
 			return new Date(0);
 		}
-		// URL url = new URL(URL);
-		// URLConnection connection = url.openConnection();
-		// long lastModified = connection.getLastModified();
-		// Date date = new Date(lastModified);
-		
-		// if (!date.equals(new Date(0)))
-		// 	return date;
-	
-
-		// Parser parser = new Parser(connection);
-		// TagNameFilter filter = new TagNameFilter("head");
-		// NodeList list = parser.extractAllNodesThatMatch(filter);
-		// Node head = list.elementAt(0);
-
-		// NodeList children = head.getChildren();
-		// for (int i = 0; i < children.size(); i++) {
-		// 	Node child = children.elementAt(i);
-		// 	if (child.getText().contains("meta") && child.getText().contains("last-modified")) {
-		// 		String content = child.getText();
-		// 		int index = content.indexOf("last-modified");
-		// 		String lastModifiedStr = content.substring(index + 14);
-		// 		date = java.text.DateFormat.getDateInstance().parse(lastModifiedStr);
-		// 		if (!date.equals(new Date(0)))
-		// 			return date;
-		// 	}
-		// }
-
-		// HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
-		// httpConnection.setRequestMethod("HEAD");
-		// lastModified = httpConnection.getLastModified();
-		// date = new Date(lastModified);
-		// if (!date.equals(new Date(0)))
-		// 	return date;
-		
-		
-		// // no last modified date found, use the date of the page
-		// lastModified = connection.getDate();
-		// date = new Date(lastModified);
-		// return date;
 	}
 
 	public static int getPageContentLength(String URL) throws IOException{
@@ -323,16 +286,8 @@ public class Crawler
 						wordIndex.addTitleInverted(wordUuid, thispageUuid, entry.getValue());
 					}
 
-
-
-					// // obtain the frequency of each word in the page
-					// Map<String, Integer> countMap = new HashMap<String, Integer>();
-					// for (String s : stopStem_body) {
-					// 	countMap.put(s, countMap.getOrDefault(s, 0) + 1);
-					// }
-
-					urlIndex.addPageMeta(thispageUuid, lastModified, pageSize, stopStem_body.size(), wordPositionMap.size());
-					// urlIndex.addPageTitle(thispageUuid, titleString);
+					urlIndex.addLastModified(thispageUuid, lastModified);
+					urlIndex.addPageSize(thispageUuid, pageSize);
 
 					// add relationship
 					for (String link : thisPageOutLinks) {

@@ -1,14 +1,14 @@
 <%-- --%>
-<%@ page import="StopStem" %>
-<%@ page import="SearchEngine" %>
-<%@ page import="PageMeta" %>
-<%@ page import="URLIndex" %>
-<%@ page import="WordIndex" %>
+<%@ page import="project_package.URLIndex" %>
+<%@ page import="project_package.WordIndex" %>
+<%@ page import="project_package.SearchEngine" %>
 <%@ page import="IRUtilities.Porter" %>
 
 
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.UUID" %>
+<%@ page import="java.util.Vector" %>
 
 
 <html>
@@ -44,41 +44,39 @@ Boscogle:
 <%
 
 if(request.getParameter("txtquery")!=""){	
-	out.println("Query is:");
-	out.println("<br>");
+	out.println("Your search query:");
 	String query = request.getParameter("txtquery");
 	out.println(query);
 	out.println("<hr>");
 	
 
-	/*
+	
 	SearchEngine se = new SearchEngine(query);
 	Map<UUID, Double> resultlist = se.search();
 
 	if(resultlist == null){
-		out.println("No match of the phase Or your all your query words are not indexed.");
+		out.println("No match of the phase Or all of your query words are not indexed.");
 	}
 	else{
 		URLIndex urlIndex = new URLIndex("URL");
 		WordIndex wordIndex = new WordIndex("WordDB");
 
-		out.println("The results are:");
-		out.println("<br>");
 		int numPage = 1;
 		for (Map.Entry<UUID, Double> entry : resultlist.entrySet()) {
-			if (numPage > 51) {
+			if (numPage > 50) {
 				break;
 			}
 
 			UUID pageID = entry.getKey();
 			Double score = entry.getValue();
-			out.println("Ranking: " + numPage + " Score: " + score);
+			out.println("Ranking: " + numPage + ", Score: " + score);
 			out.println("<br>");
-			out.println(urlIndex.getPageTitle(pageID));
+			out.println("Title: " + urlIndex.getPageTitle(pageID));
 			out.println("<br>");
-			out.println(urlIndex.getPageURL(pageID));
+			out.println("URL: <a href=\"" + urlIndex.getPageURL(pageID) + "\" style=\"text-decoration:none;\" >" + urlIndex.getPageURL(pageID) + "</a>");
 			out.println("<br>");
-			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+			out.println(urlIndex.getPageMetaString(pageID));
+
 			out.println("<br>");
 
 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
@@ -89,48 +87,40 @@ if(request.getParameter("txtquery")!=""){
             }
 			out.println("Top 5 frequency words: " + wordList2);
 			out.println("<br>");
+			out.println("<br>");
 
 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
 			int i = 1;
 			for (UUID parent : parentsList){
                 if (i >= 6) break;
-                out.println("Parent link" + i + ": " + urlIndex.getPageURL(parent));
+				
+                out.println("Parent link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(parent) + "\" style=\"text-decoration:none;\">" + urlIndex.getPageURL(parent) + "</a>");
 				out.println("<br>");
                 i++;
             }
+			out.println("<br>");
 
             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
             i = 1;
             for (UUID child : childenList){
                 if (i >= 6) break;
-                out.println("Child link" + i + ": " + urlIndex.getPageURL(child));
+                out.println("Child link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(child) + "\" style=\"text-decoration:none;\">" + urlIndex.getPageURL(child) + "</a>");
 				out.println("<br>");
                 i++;
             }
 			out.println("<hr>");
-			numpage += 1;
+			numPage += 1;
 		}
-	} */
+		urlIndex.close();
+		wordIndex.close();
+	} 
 
 }
 else{
 	out.println("You input nothing");
 	out.println("<hr>");
-	Cookie ck[] = request.getCookies();
-	int count = 0;
-	if(ck != null){
-		out.println("Search Histroy:");
-		out.println("<br>");
-		for(int i = ck.length-1;i >= 0; i--){
-			if(ck[i].getName().equals("query"+String.valueOf(i))){
-				out.println(ck[i].getValue());
-				out.println("<br>");
-			}
-			count ++;
-		}
-	}
-	out.println("<hr>");
 }
+
 
 %>
 </body>
