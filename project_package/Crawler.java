@@ -149,7 +149,6 @@ public class Crawler
 		while(st.hasMoreTokens()) {
 			v_word.addElement(st.nextToken());
 		}
-		//System.out.println(v_word);
 		return v_word;
 	}
 
@@ -319,8 +318,8 @@ public class Crawler
 					break;
 				}
 
-				// urlIndex.commit();
-				// wordIndex.commit();
+				urlIndex.commit();
+				wordIndex.commit();
 
 				// update the maxPage
 				maxPage--;

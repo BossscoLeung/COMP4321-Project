@@ -13,7 +13,7 @@
 \usepackage [english]{babel}
 \usepackage [autostyle, english = american]{csquotes}
 
-\title{COMP 4321 - Project}
+\title{COMP 4321 - Project Report and Documentation}
 \author{Leung Ka Wa, 20770807, kwleungau@connect.ust.hk}
 \date{}
 
@@ -111,9 +111,9 @@
         A bin folder containing all the classes will be created.
         \begin{figure}[!htbp]
             \centering
-            \caption{The complied bin folder}
             \label{}
             \includegraphics[width=5cm]{compliedBin.png}
+            \caption{The complied bin folder}
         \end{figure}
 
         Then run the program with the following command: \\[0.8em]
@@ -145,7 +145,7 @@
     minimum height=2em]
     
     \newpage
-    \section*{Search Engine Design}
+    \section*{Search Engine Pipeline}
     \begin{center}
         \begin{tikzpicture}[node distance = 2cm, auto]
             % Place nodes
@@ -156,7 +156,7 @@
             $w_{term,query}=(0.5+0.5\frac{tf_{term,query}}{max(tf_{query})})\log_2(1+\frac{N_{num\_indexed\_page}}{df_{num\_page\_contain\_term}})$ \\
             noraml query word that havent appear in the database will be ignored.};
             
-            \node [block, below of=stomstem, right=1cm, node distance=2cm, text width=10em] (queryTermException) {if $df_{phase\_word}=0$ \\ Or all the query words havent appear in the database};
+            \node [block, below of=stomstem, right=0.5cm, node distance=2.5cm, text width=12em] (queryTermException) {if \\ 1. $df_{phase\_word}=0$ \\ 2. phase are all stopped \\ 3. all query not indexed\\4. query are all stopped};
 
             \node [cloud, below of=queryTermException, node distance=3cm] (noResultEndding) {No Result};
 
@@ -164,24 +164,26 @@
 
 
             \node [block, left of=phaseDecide, node distance=4cm] (phaseSearch) {phase search};
-            \node [block, below of=phaseSearch, text width=20em] (processPhaseSearch1) {obtain the page that contain the phase word with count in body and title respectively};
+            \node [block, below of=phaseSearch, text width=20em] (processPhaseSearch1) {obtain the page that contain the all phases with count in body and title respectively};
             \node [block, below of=processPhaseSearch1, text width=20em, node distance = 1.8cm] (processPhaseSearch2) {calculate the term weight of the page\\ $w_{term,page}=(0.5+0.5\frac{tf_{term,page}}{max(tf_{page})})\times$ \\ $\log_2(1+\frac{N_{num\_indexed\_page}}{df_{num\_page\_contain\_term}})$\\ Zero if the term havent appear in the page};
-            \node [block, below of=processPhaseSearch2, text width=20em, node distance=2.2cm] (processPhaseSearch3) {favor query word in title by frequency:\\ $w_{term}=w_{term,page}\times(1.5\times tf_{term\_in\_title,page})$};
+            \node [block, below of=processPhaseSearch2, text width=20em, node distance=2.2cm] (processPhaseSearch3) {favor query word in title by frequency:\\ $w_{term}=w_{term,page}\times(1.25\times tf_{term\_in\_title,page})$};
 
-            \node [block, below of=processPhaseSearch3, text width=20em, node distance=1.5cm] (processPhaseSearch4) {favor phase word in body by frequency:\\ $w_{phase}=w_{phase,page}\times(1.25\times tf_{phase,page})$};
+            \node [block, below of=processPhaseSearch3, text width=20em, node distance=1.5cm] (processPhaseSearch4) {favor phase word in body by frequency:\\ $w_{phase}=w_{phase,page}\times(1.15\times tf_{phase,page})$};
 
-            \node [block, below of=processPhaseSearch4, text width=20em, node distance=1.5cm] (processPhaseSearch5) {favor phase word in title by frequency:\\ $w_{phase,page}=w_{phase,page}\times(3\times tf_{phase\_in\_title,page})$};
+            \node [block, below of=processPhaseSearch4, text width=20em, node distance=1.5cm] (processPhaseSearch5) {favor phase word in title by frequency:\\ $w_{phase,page}=w_{phase,page}\times(2\times tf_{phase\_in\_title,page})$};
 
 
 
             \node [block, right of=phaseDecide, node distance=4cm] (normalSearch) {normal search};
             \node [block, below of=normalSearch, text width=20em, node distance = 2.5cm] (processNormalSearch1) {calculate the term weight of the page\\ $w_{term}=(0.5+0.5\frac{tf_{term,page}}{max(tf_{page})})\times$ $\log_2(1+\frac{N_{num\_indexed\_page}}{df_{num\_page\_contain\_term}})$ \\ Zero if the term havent appear in the page};
 
-            \node [block, below of=processNormalSearch1, text width=20em, node distance = 2.5cm] (processNormalSearch2) {favor query word in title by frequency:\\ $w_{term}=w_{term,page}\times(1.5\times tf_{term\_in\_title,page})$};
+            \node [block, below of=processNormalSearch1, text width=20em, node distance = 2.5cm] (processNormalSearch2) {favor query word in title by frequency:\\ $w_{term}=w_{term,page}\times(1.25\times tf_{term\_in\_title,page})$};
 
             \node [block, below of=phaseDecide, text width=25em, node distance = 11.1cm] (pageWeight) {calculate the pages weight:\\ $w_{page}=\sum_{term\in query}w_{term,query}\times w_{term,page}$};
 
-            \node [block, below of=pageWeight, text width=25em,, node distance = 1.5cm] (normalize) {normalize the page score:\\ $score_{page}=\log_2(w_{page})$};
+            \node [block, below of=pageWeight, text width=47em,, node distance = 1.5cm, right=-7.5cm] (normalize) {normalize the page score by vector length:\\ $CosSim(page, query)=\frac{w_{page}}{query length \times Document length}$
+
+            Notice that the CosSim may not be in range $[0,1]$ since favoring title and phase may cause the score $>$ 1.};
 
             \node [block, below of=normalize, text width=25em, node distance = 1.5cm] (sort) {sort the page by score and \\ return \{(UUID)page1=$score_{page1}\dots$\}};
 
@@ -215,6 +217,57 @@
     \end{center}
 
     \section*{Running the user interface (JSP web)}
+        \subsection*{lib}
+        Make sure those .jar are added the the lib of JSP (green .jar are newly added):
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[height=5cm]{jsplib.png}
+            \caption{lib of JSP should contain those .jar}
+        \end{figure}
+
+        The .jar files can be copied from the lib folder of the project.
+        \subsection*{webapps}
+        Make sure the Project folder is in the webapps folder of Tomcat.
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[height=5cm]{webinf.png}
+            \caption{The Project folder}
+        \end{figure}
+
+        The package under WEB-INF/classes can be copy from the compiled bin folder from figure 1. 
+
+        \subsection*{DataBase}
+        The databases should be placed in the same folder as the project folder (for my case).
+        Even if you don't know where should the database be placed or don't have the databases, you can use the bonus features - Crawler in JSP web interface to index more pages to create databases and crawl pages. Details can be found in the Bonus features beyond requirement section.
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[height=5cm]{filesLocations.png}
+            \caption{The databases locations}
+        \end{figure}
+
+        \newpage
+        \subsection*{Run}
+            In the project folder, run the following command: \\[0.4em]
+            \centerline{\textbf{apache-tomcat-10.1.6/bin/startup.sh}}
+            Then, open the browser and go to the following url: \\[0.4em]
+            \centerline{\textbf{http://localhost:8080/Project/project.html}}
+
+        \subsection*{Usage and show test}
+        Type the query in the search box and click search.
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[width=10cm]{search.png}
+            \caption{Search box}
+        \end{figure}
+
+        The result will be shown in the following format with your query words and phase shown:
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[width=14cm]{example1.png}
+            \caption{Result}
+        \end{figure}
+
+
 
     \newpage
     \section*{Bonus features beyond requirement}
@@ -226,19 +279,114 @@
         \subsection*{Query weight}
             The query weight is not 1. It is calculated by the following formula:
             \begin{equation*}
-                w_{term,query}=\frac{tf_{term,query}}{max(tf_{query})}\times\log_2(1+\frac{N_{num\_indexed\_page}}{df_{num\_page\_contain\_term}})
+                w_{term/phase,query}=\frac{tf_{term,query}}{max(tf_{query})}\times\log_2(1+\frac{N_{num\_indexed\_page}}{df_{num\_page\_contain\_term}})
             \end{equation*}
-            Therefore, it can show the importance of the term in the query. For example, a search query 'definition of quantum in quantum mechanics', the term $tf$ part of the term 'quantum' will be larger than others. Which can show the different of importance level in the query.
+            It can show the importance of the term in the query. For example, a search query 'definition of quantum in quantum mechanics', the term 'quantum' will be larger than others in the $tf$ part. Also, the $idf$ part also indicate the likeliness of this term appear in a doc, the less it appear, the higher the weighting. Therefore, we can obtain the query weight which showing the level of importance of term in the query thus make the result more ranking more reasonable(favor the terms that are more specific and meaningful but not general).
 
-        \subsection*{Fast crawling speed}
-            The crawler can crawl 1000 pages in 1 minute. The speed is fast enough for the search engine.
+        \subsection*{Crawling time is quite fast}
+        It take less than 1 minute to crawl 300 pages. You can test about it. But please use CMD to run the crawler as JSP web interface will slow down the crawling speed :).
+        \begin{figure}[!h]
+            \centering
+            \label{}
+            \includegraphics[width=15cm]{crawl_in_local.png}
+            \caption{Result of crawler in the command line}
+        \end{figure}
+        \subsection*{Special query are handled}
+            \begin{enumerate}
+                \item No match of the phases in the query, e.g. "BoscoLeung"
+                \item One of the phase are all stop words, e.g. "the of", it will consider as no match.
+                \item All of your query words are not indexed, e.g. BoscoLeung from hkustCSDepartment
+                \item Query words are all stop words, e.g. there is a
+            \end{enumerate}
+            \begin{figure}[!htbp]
+                \centering
+                \label{}
+                \includegraphics[width=10cm]{noResult.png}
+                \caption{The web interface showing no result}
+            \end{figure}
 
-        \subsection*{Additional crawler in JSP web interface to index more pages}
+        \subsection*{Crawler in JSP web interface to index more pages}
+            You can now use the crawler in the JSP web interface to index more pages. Even you don't have the database at first. You can now index pages from the interface.
+            \begin{figure}[!htbp]
+                \centering
+                \label{}
+                \includegraphics[width=17cm]{crawl_in_web.png}
+                \caption{Demo of the crawler in JSP web interface}
+            \end{figure}
 
-    \newpage
+            But noticed that the crawling speed will be slower compare to that of crawling in the command line because of the JSP stuff. And the process will not be shown in the web interface. So better not to crawl too many pages at once :). Or you need to panient to wait for the result. (The page crawled will in the datebase even hard stopped.)
+            \begin{figure}[!h]
+                \centering
+                \label{}
+                \includegraphics[width=15cm]{crawl_in_local.png}
+                \caption{Demo of the crawler in the command line}
+            \end{figure}
+
+            \newpage
+            Example: 
+            \begin{figure}[!htbp]
+                \centering
+                \includegraphics[width=6cm]{c1.png}
+                \caption{A page that is not indexed}
+            \end{figure}
+            \begin{figure}[!htbp]
+                \centering
+                \includegraphics[width=9cm]{c2.png}
+                \caption{The starting page}
+            \end{figure}
+            \begin{figure}[!htbp]
+                \centering
+                \includegraphics[width=15cm]{c3.png}
+                \caption{Enter the crawling information}
+            \end{figure}
+            \begin{figure}[!htbp]
+                \centering
+                \includegraphics[width=15cm]{c4.png}
+                \caption{After crawling}
+            \end{figure}
+            \begin{figure}[!htbp]
+                \centering
+                \includegraphics[width=9cm]{c5.png}
+                \caption{The page is now indexed and searchable}
+            \end{figure}
+            \newpage
+            End of example.
     \section*{Conclusion}
+        \subsection*{Strengths}
+        The searching time is fast even there will be 50 results to output. \\
+        The searching result is shown in a good format. \\
+        The web interface is easy to use and responsive. 
+        \subsection*{Weaknesses}
+        \subsubsection*{Phase search minor defect}
+        Some time the phase search result is not good because of the linking postition of the title and the body.
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[height=6cm]{bad2.png}
+            \caption{Example of bad phase search result}
+        \end{figure}
 
-    \newpage
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[width=6cm]{bad3.png}
+            \caption{website of the bad phase search result}
+        \end{figure}
+
+        The search result may first give a seemmingly not accurate result, as no phase "hkust cse" is found. But when look into the html source code of the page. The word hkust in the last of the title and cse in the first of the body are consider as a phase as their position are in oder. 
+
+        \begin{figure}[!htbp]
+            \centering
+            \includegraphics[width=15cm]{bad1.png}
+            \caption{Reason of bad phase search result}
+        \end{figure}
+        
+        This is because in my index, there are two type of index, one is for the title and one is for the title and body.
+        So this kind of unusual case will happen in rare cases but the effect is small as those two word is not usually to make a meaning phase. \\
+
+        Therefore, if I could re-implement the whold system, I will seperate the title and body into two different index. So that the phase search result will be more accurate. 
+
+        \subsubsection*{Links not utilized in the ranking}
+        The links relationships are not used for the searching. It maybe useful to perform PageRank, HITS or other ranking algorithm to rank the result and make the result more accurate.
+
     \section*{Special Notice}
         \subsection*{Word Extraction}
             I have set 

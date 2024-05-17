@@ -20,27 +20,47 @@
 				font: 12pt sans-serif;
 				width: 80%;
 				align-self: auto;
-	
+
 			}
-	
+
 			.submit-element {
 				font: 12pt sans-serif;
 			}
 
+			.url-element{
+				font: 12pt sans-serif;
+				width: 70%;
+				align-self: auto;
+			}
+
+			.number-element{
+				font: 12pt sans-serif;
+				width: 5%;
+				align-self: auto;
+			}
+
 			body {
-			border: 40px solid white;
+				border: 40px solid white;
 			}
 	  
 		</style> 
 	</head> 
 <body>
-Boscogle:
+    Boscogle:
 <form method="post" action="project.jsp"> 
-<input type="text" name="txtquery" class="input-element"> 
-<input type="checkbox" name="save" value="save" checked>Save
-<!-- <input type="checkbox" name="clear" value="clear">clear histroy -->
-<input type="submit" value="Search" class="submit-element"> 
+    <input type="text" name="txtquery" class="input-element" required> 
+    <!-- <input type="checkbox" name="save" value="save" checked>Save -->
+    <input type="submit" value="Search" class="submit-element"> 
 </form> 
+
+    Crawl more page into database:
+<form method="post" action="crawler.jsp"> 
+	URL: <input type="text" name="urltext" class="url-element" required> 
+	No. page: <input type="number" name="num" class="number-element" min="1" max="500" required>
+	<input type="submit" value="crawl" class="submit-element"> 
+</form>
+<hr>
+
 <%
 
 if(request.getParameter("txtquery")!=""){	
@@ -53,9 +73,23 @@ if(request.getParameter("txtquery")!=""){
 	
 	SearchEngine se = new SearchEngine(query);
 	Map<UUID, Double> resultlist = se.search();
+	out.println("Query words: " + se.getQueryWords());
+	out.println("<br>");
+	out.println("Query phases: " + se.getPhaseSearch());
+	out.println("<hr>");
+
 
 	if(resultlist == null){
-		out.println("No match of the phase Or all of your query words are not indexed.");
+		out.println("No Result Found due to the following reasons:");
+		out.println("<br>");
+		out.println("1. No match of the phases.");
+		out.println("<br>");
+		out.println("2. One of the phase are all stop words.");
+		out.println("<br>");
+		out.println("3. All of your query words are not indexed.");
+		out.println("<br>");
+		out.println("4. Your query words are all stop words.");
+
 	}
 	else{
 		URLIndex urlIndex = new URLIndex("URL");
@@ -91,23 +125,33 @@ if(request.getParameter("txtquery")!=""){
 
 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
 			int i = 1;
-			for (UUID parent : parentsList){
-                if (i >= 6) break;
-				
-                out.println("Parent link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(parent) + "\" style=\"text-decoration:none;\">" + urlIndex.getPageURL(parent) + "</a>");
-				out.println("<br>");
-                i++;
-            }
+			if(parentsList == null){
+				out.println("No Parent link");
+			}
+			else{
+				for (UUID parent : parentsList){
+					if (i >= 6) break;
+					
+					out.println("Parent link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(parent) + "\" style=\"text-decoration:none;\">" + urlIndex.getPageURL(parent) + "</a>");
+					out.println("<br>");
+					i++;
+				}
+			}
 			out.println("<br>");
 
             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
             i = 1;
-            for (UUID child : childenList){
-                if (i >= 6) break;
-                out.println("Child link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(child) + "\" style=\"text-decoration:none;\">" + urlIndex.getPageURL(child) + "</a>");
-				out.println("<br>");
-                i++;
-            }
+			if(childenList == null){
+				out.println("No Child link");
+			}
+			else{
+				for (UUID child : childenList){
+					if (i >= 6) break;
+					out.println("Child link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(child) + "\" style=\"text-decoration:none;\">" + urlIndex.getPageURL(child) + "</a>");
+					out.println("<br>");
+					i++;
+				}
+			}
 			out.println("<hr>");
 			numPage += 1;
 		}

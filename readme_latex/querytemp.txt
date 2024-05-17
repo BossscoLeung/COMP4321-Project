@@ -1,0 +1,21 @@
+best hiking trails in the Pacific Northwest
+
+"hkust" "cse"
+
+"cse department" "hkust"
+"cse department" "hkust" test page
+
+"Keyword Classification" "Information Retrieval"
+"Keyword Classification" research monograph "Information Retrieval"
+"Keyword Classification" "Retrieval Information"
+
+No Match:
+"boscoleung"
+"the of" "hkust"
+BoscoLeung from hkustCSDepartment
+there is a
+
+
+extra crawl:
+https://www.cse.ust.hk/~kwtleung/COMP4321/news/bbc.htm
+"introduce a rare bird"

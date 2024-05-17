@@ -126,10 +126,15 @@ public class Tester{
             System.out.println("Top " + displayNum + " frequency words: " + wordList2);
             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
             int i = 0;
-            for (UUID child : childenList){
-                if (i >= displayNum) break;
-                System.out.println(urlIndex.getPageURL(child));
-                i++;
+            if (childenList == null) {
+                System.out.println("No childen");
+            }
+            else{
+                for (UUID child : childenList){
+                    if (i >= displayNum) break;
+                    System.out.println(urlIndex.getPageURL(child));
+                    i++;
+                }
             }
 
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
@@ -173,8 +178,10 @@ public class Tester{
                 long startTime = System.currentTimeMillis();
 
                 try {
+                    startTime = System.currentTimeMillis();
                     runCrawler(args[1], Integer.parseInt(args[2]));
                 } catch (Exception e) {
+                    startTime = System.currentTimeMillis();
                     runCrawler(null, 0);
                 }
                 

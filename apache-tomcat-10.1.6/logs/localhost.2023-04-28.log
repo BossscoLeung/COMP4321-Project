@@ -1,0 +1,67 @@
+28-Apr-2023 00:06:57.009 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+28-Apr-2023 00:06:57.009 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+28-Apr-2023 00:07:21.991 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+28-Apr-2023 00:07:21.991 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+28-Apr-2023 00:07:21.992 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@2d4608a6')
+28-Apr-2023 00:22:10.462 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+28-Apr-2023 00:22:10.462 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+28-Apr-2023 00:22:27.570 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+28-Apr-2023 00:22:27.570 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+28-Apr-2023 00:22:27.571 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@33ecbd6c')
+28-Apr-2023 00:22:34.440 嚴重 [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [project.jsp] at line [78]
+
+75: 	Map<UUID, Double> resultlist = se.search();
+76: 	out.println("Query words: " + se.getQueryWords());
+77: 	out.println("<br>");
+78: 	out.println("Query phases: " + se.getPhaseSearch());
+79: 	out.println("<hr>");
+80: 
+81: 
+
+
+Stacktrace:] with root cause
+	java.lang.StringIndexOutOfBoundsException: begin 0, end -1, length 0
+		at java.base/java.lang.String.checkBoundsBeginEnd(String.java:3319)
+		at java.base/java.lang.String.substring(String.java:1874)
+		at project_package.SearchEngine.getPhaseSearch(SearchEngine.java:61)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:214)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+28-Apr-2023 00:24:57.358 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+28-Apr-2023 00:24:57.358 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+28-Apr-2023 00:25:19.208 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+28-Apr-2023 00:25:19.208 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+28-Apr-2023 00:25:19.209 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@2d4608a6')
+28-Apr-2023 00:35:02.077 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+28-Apr-2023 00:35:02.077 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+28-Apr-2023 00:37:31.267 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+28-Apr-2023 00:37:31.267 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+28-Apr-2023 00:37:31.268 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@178f268a')
+28-Apr-2023 01:02:47.689 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+28-Apr-2023 01:02:47.689 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()

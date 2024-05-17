@@ -1,0 +1,2930 @@
+25-Apr-2023 00:51:18.922 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 00:51:18.923 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 00:51:18.923 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@503fbbc6')
+25-Apr-2023 00:51:51.408 嚴重 [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [52] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+49: 
+50: 	
+51: 	SearchEngine se = new SearchEngine(query);
+52: 	Map<UUID, Double> resultlist = se.search();
+53: 
+54: 	if(resultlist == null){
+55: 		out.println("No match of the phase Or your all your query words are not indexed.");
+
+
+An error occurred at line: [58] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+55: 		out.println("No match of the phase Or your all your query words are not indexed.");
+56: 	}
+57: 	else{
+58: 		URLIndex urlIndex = new URLIndex("URL");
+59: 		WordIndex wordIndex = new WordIndex("WordDB");
+60: 
+61: 		out.println("The results are:");
+
+
+An error occurred at line: [59] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+56: 	}
+57: 	else{
+58: 		URLIndex urlIndex = new URLIndex("URL");
+59: 		WordIndex wordIndex = new WordIndex("WordDB");
+60: 
+61: 		out.println("The results are:");
+62: 		out.println("<br>");
+
+
+An error occurred at line: [64] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+61: 		out.println("The results are:");
+62: 		out.println("<br>");
+63: 		int numPage = 1;
+64: 		for (Map.Entry<UUID, Double> entry : resultlist.entrySet()) {
+65: 			if (numPage > 51) {
+66: 				break;
+67: 			}
+
+
+An error occurred at line: [69] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+66: 				break;
+67: 			}
+68: 
+69: 			UUID pageID = entry.getKey();
+70: 			Double score = entry.getValue();
+71: 			out.println("Ranking: " + numPage + " Score: " + score);
+72: 			out.println("<br>");
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+81: 
+82:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+83:             for (UUID wordID : wordList.keySet()){
+
+
+An error occurred at line: [83] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+81: 
+82:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+83:             for (UUID wordID : wordList.keySet()){
+84:                 wordList2.put(wordIndex.getWord(wordID), wordList.get(wordID));
+85:             }
+86: 			out.println("Top 5 frequency words: " + wordList2);
+
+
+An error occurred at line: [89] in the jsp file: [/project.jsp]
+Vector cannot be resolved to a type
+86: 			out.println("Top 5 frequency words: " + wordList2);
+87: 			out.println("<br>");
+88: 
+89: 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
+90: 			int i = 1;
+91: 			for (UUID parent : parentsList){
+92:                 if (i >= 6) break;
+
+
+An error occurred at line: [89] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+86: 			out.println("Top 5 frequency words: " + wordList2);
+87: 			out.println("<br>");
+88: 
+89: 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
+90: 			int i = 1;
+91: 			for (UUID parent : parentsList){
+92:                 if (i >= 6) break;
+
+
+An error occurred at line: [91] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+88: 
+89: 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
+90: 			int i = 1;
+91: 			for (UUID parent : parentsList){
+92:                 if (i >= 6) break;
+93:                 out.println("Parent link" + i + ": " + urlIndex.getPageURL(parent));
+94: 				out.println("<br>");
+
+
+An error occurred at line: [98] in the jsp file: [/project.jsp]
+Vector cannot be resolved to a type
+95:                 i++;
+96:             }
+97: 
+98:             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
+99:             i = 1;
+100:             for (UUID child : childenList){
+101:                 if (i >= 6) break;
+
+
+An error occurred at line: [98] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+95:                 i++;
+96:             }
+97: 
+98:             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
+99:             i = 1;
+100:             for (UUID child : childenList){
+101:                 if (i >= 6) break;
+
+
+An error occurred at line: [100] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+97: 
+98:             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
+99:             i = 1;
+100:             for (UUID child : childenList){
+101:                 if (i >= 6) break;
+102:                 out.println("Child link" + i + ": " + urlIndex.getPageURL(child));
+103: 				out.println("<br>");
+
+
+An error occurred at line: [107] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+104:                 i++;
+105:             }
+106: 			out.println("<hr>");
+107: 			numpage += 1;
+108: 		}
+109: 	} 
+110: 
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [52] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+49: 
+50: 	
+51: 	SearchEngine se = new SearchEngine(query);
+52: 	Map<UUID, Double> resultlist = se.search();
+53: 
+54: 	if(resultlist == null){
+55: 		out.println("No match of the phase Or your all your query words are not indexed.");
+
+
+An error occurred at line: [58] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+55: 		out.println("No match of the phase Or your all your query words are not indexed.");
+56: 	}
+57: 	else{
+58: 		URLIndex urlIndex = new URLIndex("URL");
+59: 		WordIndex wordIndex = new WordIndex("WordDB");
+60: 
+61: 		out.println("The results are:");
+
+
+An error occurred at line: [59] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+56: 	}
+57: 	else{
+58: 		URLIndex urlIndex = new URLIndex("URL");
+59: 		WordIndex wordIndex = new WordIndex("WordDB");
+60: 
+61: 		out.println("The results are:");
+62: 		out.println("<br>");
+
+
+An error occurred at line: [64] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+61: 		out.println("The results are:");
+62: 		out.println("<br>");
+63: 		int numPage = 1;
+64: 		for (Map.Entry<UUID, Double> entry : resultlist.entrySet()) {
+65: 			if (numPage > 51) {
+66: 				break;
+67: 			}
+
+
+An error occurred at line: [69] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+66: 				break;
+67: 			}
+68: 
+69: 			UUID pageID = entry.getKey();
+70: 			Double score = entry.getValue();
+71: 			out.println("Ranking: " + numPage + " Score: " + score);
+72: 			out.println("<br>");
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [77] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+74: 			out.println("<br>");
+75: 			out.println(urlIndex.getPageURL(pageID));
+76: 			out.println("<br>");
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+77: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+78: 			out.println("<br>");
+79: 
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+81: 
+82:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+83:             for (UUID wordID : wordList.keySet()){
+
+
+An error occurred at line: [83] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+80: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+81: 
+82:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+83:             for (UUID wordID : wordList.keySet()){
+84:                 wordList2.put(wordIndex.getWord(wordID), wordList.get(wordID));
+85:             }
+86: 			out.println("Top 5 frequency words: " + wordList2);
+
+
+An error occurred at line: [89] in the jsp file: [/project.jsp]
+Vector cannot be resolved to a type
+86: 			out.println("Top 5 frequency words: " + wordList2);
+87: 			out.println("<br>");
+88: 
+89: 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
+90: 			int i = 1;
+91: 			for (UUID parent : parentsList){
+92:                 if (i >= 6) break;
+
+
+An error occurred at line: [89] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+86: 			out.println("Top 5 frequency words: " + wordList2);
+87: 			out.println("<br>");
+88: 
+89: 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
+90: 			int i = 1;
+91: 			for (UUID parent : parentsList){
+92:                 if (i >= 6) break;
+
+
+An error occurred at line: [91] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+88: 
+89: 			Vector<UUID>parentsList = urlIndex.getChildToParents(pageID);
+90: 			int i = 1;
+91: 			for (UUID parent : parentsList){
+92:                 if (i >= 6) break;
+93:                 out.println("Parent link" + i + ": " + urlIndex.getPageURL(parent));
+94: 				out.println("<br>");
+
+
+An error occurred at line: [98] in the jsp file: [/project.jsp]
+Vector cannot be resolved to a type
+95:                 i++;
+96:             }
+97: 
+98:             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
+99:             i = 1;
+100:             for (UUID child : childenList){
+101:                 if (i >= 6) break;
+
+
+An error occurred at line: [98] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+95:                 i++;
+96:             }
+97: 
+98:             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
+99:             i = 1;
+100:             for (UUID child : childenList){
+101:                 if (i >= 6) break;
+
+
+An error occurred at line: [100] in the jsp file: [/project.jsp]
+UUID cannot be resolved to a type
+97: 
+98:             Vector<UUID>childenList = urlIndex.getParentToChilden(pageID);
+99:             i = 1;
+100:             for (UUID child : childenList){
+101:                 if (i >= 6) break;
+102:                 out.println("Child link" + i + ": " + urlIndex.getPageURL(child));
+103: 				out.println("<br>");
+
+
+An error occurred at line: [107] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+104:                 i++;
+105:             }
+106: 			out.println("<hr>");
+107: 			numpage += 1;
+108: 		}
+109: 	} 
+110: 
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 00:52:44.096 嚴重 [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage += 1;
+110: 		}
+111: 	} 
+112: 
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage += 1;
+110: 		}
+111: 	} 
+112: 
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 00:54:29.407 嚴重 [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage += 1;
+110: 		}
+111: 	} 
+112: 
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage += 1;
+110: 		}
+111: 	} 
+112: 
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 00:55:02.083 嚴重 [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage = numpage + 1;
+110: 		}
+111: 	} 
+112: 
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage = numpage + 1;
+110: 		}
+111: 	} 
+112: 
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage = numpage + 1;
+110: 		}
+111: 	} 
+112: 
+
+
+An error occurred at line: [109] in the jsp file: [/project.jsp]
+numpage cannot be resolved to a variable
+106:                 i++;
+107:             }
+108: 			out.println("<hr>");
+109: 			numpage = numpage + 1;
+110: 		}
+111: 	} 
+112: 
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 00:55:39.122 嚴重 [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 00:59:19.528 嚴重 [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [60] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+57: 		out.println("No match of the phase Or your all your query words are not indexed.");
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+
+
+An error occurred at line: [61] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+58: 	}
+59: 	else{
+60: 		URLIndex urlIndex = new URLIndex("URL");
+61: 		WordIndex wordIndex = new WordIndex("WordDB");
+62: 
+63: 		out.println("The results are:");
+64: 		out.println("<br>");
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [79] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+76: 			out.println("<br>");
+77: 			out.println(urlIndex.getPageURL(pageID));
+78: 			out.println("<br>");
+79: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+80: 			out.println("<br>");
+81: 
+82: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:01:19.273 嚴重 [http-nio-8080-exec-8] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+An error occurred at line: [63] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+60: 		out.println("No match of the phase Or your all your query words are not indexed.");
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+
+
+An error occurred at line: [64] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+67: 		out.println("<br>");
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+An error occurred at line: [63] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+60: 		out.println("No match of the phase Or your all your query words are not indexed.");
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+
+
+An error occurred at line: [64] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+67: 		out.println("<br>");
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:01:32.665 嚴重 [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+An error occurred at line: [63] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+60: 		out.println("No match of the phase Or your all your query words are not indexed.");
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+
+
+An error occurred at line: [64] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+67: 		out.println("<br>");
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+An error occurred at line: [63] in the jsp file: [/project.jsp]
+The constructor URLIndex(String) is not visible
+60: 		out.println("No match of the phase Or your all your query words are not indexed.");
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+
+
+An error occurred at line: [64] in the jsp file: [/project.jsp]
+The constructor WordIndex(String) is not visible
+61: 	}
+62: 	else{
+63: 		URLIndex urlIndex = new URLIndex("URL");
+64: 		WordIndex wordIndex = new WordIndex("WordDB");
+65: 
+66: 		out.println("The results are:");
+67: 		out.println("<br>");
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:07:06.012 嚴重 [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+The type PageMeta is not visible
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:09:12.452 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 01:09:12.452 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 01:10:56.768 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 01:10:56.768 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 01:10:56.768 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@253c1256')
+25-Apr-2023 01:11:06.383 嚴重 [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [56]
+
+53: 	
+54: 
+55: 	
+56: 	SearchEngine se = new SearchEngine(query);
+57: 	Map<UUID, Double> resultlist = se.search();
+58: 
+59: 	if(resultlist == null){
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: jdbm.RecordManagerFactory
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1436)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1244)
+		at project_package.URLIndex.<init>(URLIndex.java:56)
+		at project_package.SearchEngine.<init>(SearchEngine.java:33)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:194)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:27:41.743 嚴重 [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+Cannot cast from Date to PageMeta
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((PageMeta)(urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (PageMeta)(urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+Cannot cast from int to PageMeta
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((PageMeta)(urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (PageMeta)(urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+Cannot cast from Date to PageMeta
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((PageMeta)(urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (PageMeta)(urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+An error occurred at line: [82] in the jsp file: [/project.jsp]
+Cannot cast from int to PageMeta
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((PageMeta)(urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (PageMeta)(urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:28:04.305 嚴重 [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [56]
+
+53: 	
+54: 
+55: 	
+56: 	SearchEngine se = new SearchEngine(query);
+57: 	Map<UUID, Double> resultlist = se.search();
+58: 
+59: 	if(resultlist == null){
+
+
+Stacktrace:] with root cause
+	java.lang.NoClassDefFoundError: jdbm/RecordManagerFactory
+		at project_package.URLIndex.<init>(URLIndex.java:56)
+		at project_package.SearchEngine.<init>(SearchEngine.java:33)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:194)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:33:08.258 嚴重 [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [56]
+
+53: 	
+54: 
+55: 	
+56: 	SearchEngine se = new SearchEngine(query);
+57: 	Map<UUID, Double> resultlist = se.search();
+58: 
+59: 	if(resultlist == null){
+
+
+Stacktrace:] with root cause
+	java.lang.NoClassDefFoundError: jdbm/RecordManagerFactory
+		at project_package.URLIndex.<init>(URLIndex.java:56)
+		at project_package.SearchEngine.<init>(SearchEngine.java:33)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:194)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:35:19.066 嚴重 [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [56]
+
+53: 	
+54: 
+55: 	
+56: 	SearchEngine se = new SearchEngine(query);
+57: 	Map<UUID, Double> resultlist = se.search();
+58: 
+59: 	if(resultlist == null){
+
+
+Stacktrace:] with root cause
+	java.lang.NoClassDefFoundError: jdbm/RecordManagerFactory
+		at project_package.URLIndex.<init>(URLIndex.java:56)
+		at project_package.SearchEngine.<init>(SearchEngine.java:33)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:194)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:36:16.452 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 01:36:16.452 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 01:36:18.765 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 01:36:18.765 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 01:36:18.766 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@178f268a')
+25-Apr-2023 01:36:28.353 嚴重 [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [82]
+
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println((urlIndex.getPageMeta(pageID)).getLastModified() + ", " + (urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:220)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:37:40.127 嚴重 [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [82]
+
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:220)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:40:59.850 嚴重 [http-nio-8080-exec-8] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [82]
+
+79: 			out.println("<br>");
+80: 			out.println(urlIndex.getPageURL(pageID));
+81: 			out.println("<br>");
+82: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+83: 			out.println("<br>");
+84: 
+85: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:220)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:47:07.740 嚴重 [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [106] in the jsp file: [/project.jsp]
+parent cannot be resolved to a variable
+103:             i = 1;
+104:             for (UUID child : childenList){
+105:                 if (i >= 6) break;
+106:                 out.println("Child link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(parent) + "\">" + urlIndex.getPageURL(child) + "</a>");
+107: 				out.println("<br>");
+108:                 i++;
+109:             }
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [106] in the jsp file: [/project.jsp]
+parent cannot be resolved to a variable
+103:             i = 1;
+104:             for (UUID child : childenList){
+105:                 if (i >= 6) break;
+106:                 out.println("Child link " + i + ": " + "<a href=\"" + urlIndex.getPageURL(parent) + "\">" + urlIndex.getPageURL(child) + "</a>");
+107: 				out.println("<br>");
+108:                 i++;
+109:             }
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:53:03.917 嚴重 [http-nio-8080-exec-8] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [83]
+
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\">" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			out.println(((PageMeta)urlIndex.getPageMeta(pageID)).getLastModified() + ", " + ((PageMeta)urlIndex.getPageMeta(pageID)).getPageSize());
+84: 			out.println("<br>");
+85: 
+86: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:221)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:55:40.341 嚴重 [http-nio-8080-exec-10] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [83]
+
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\">" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+84: 			out.println(pageMeta.getLastModified() + ", " + pageMeta.getPageSize());
+85: 			out.println("<br>");
+86: 
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:221)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 01:56:14.425 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 01:56:14.426 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 01:57:33.932 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 01:57:33.932 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 01:57:33.933 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@862f408')
+25-Apr-2023 01:57:42.357 嚴重 [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [project.jsp] at line [83]
+
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\">" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+84: 			out.println(pageMeta.getLastModified() + ", " + pageMeta.getPageSize());
+85: 			out.println("<br>");
+86: 
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: project_package.PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:221)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 02:04:10.599 嚴重 [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [83]
+
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\">" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+84: 			out.println(pageMeta.getLastModified() + ", " + pageMeta.getPageSize());
+85: 			out.println("<br>");
+86: 
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: project_package.PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:221)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 02:06:20.779 嚴重 [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [83]
+
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\">" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+84: 			out.println(pageMeta.getLastModified() + ", " + pageMeta.getPageSize());
+85: 			out.println("<br>");
+86: 
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: project_package.PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMeta(URLIndex.java:186)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:221)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 02:18:16.379 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 02:18:16.379 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 10:06:31.501 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 10:06:31.501 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 10:06:31.502 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@33ecbd6c')
+25-Apr-2023 10:06:43.346 嚴重 [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [15] in the generated java file: [/Users/boscoleung/Library/CloudStorage/OneDrive-HKUSTConnect/University/COMP4321/COMP4321-Project/apache-tomcat-10.1.6/work/Catalina/localhost/Project/org/apache/jsp/project_jsp.java]
+The type project_package.PageMeta is not visible
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:07:21.031 嚴重 [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [85]
+
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+84: 			//out.println(pageMeta.getLastModified() + ", " + pageMeta.getPageSize());
+85: 			out.println(urlIndex.getPageMetaString(pageID));
+86: 
+87: 			out.println("<br>");
+88: 
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: project_package.PageMeta
+		at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+		at java.base/java.lang.Class.forName0(Native Method)
+		at java.base/java.lang.Class.forName(Class.java:398)
+		at java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:756)
+		at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1995)
+		at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1862)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2169)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.htree.HashBucket.readExternal(HashBucket.java:299)
+		at java.base/java.io.ObjectInputStream.readExternalData(ObjectInputStream.java:2245)
+		at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2194)
+		at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1679)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:493)
+		at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:451)
+		at jdbm.helper.Serialization.deserialize(Serialization.java:93)
+		at jdbm.helper.DefaultSerializer.deserialize(DefaultSerializer.java:97)
+		at jdbm.recman.BaseRecordManager.fetch(BaseRecordManager.java:341)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:263)
+		at jdbm.recman.CacheRecordManager.fetch(CacheRecordManager.java:242)
+		at jdbm.htree.HashDirectory.get(HashDirectory.java:192)
+		at jdbm.htree.HTree.get(HTree.java:142)
+		at project_package.URLIndex.getPageMetaString(URLIndex.java:196)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:223)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:08:42.371 嚴重 [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [89]
+
+86: 
+87: 			out.println("<br>");
+88: 
+89: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+90: 
+91:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+92:             for (UUID wordID : wordList.keySet()){
+
+
+Stacktrace:] with root cause
+	java.lang.ClassNotFoundException: project_package.WordIndex$1
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1436)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1244)
+		at project_package.WordIndex.getHighestFrequencyWordsDouble(WordIndex.java:230)
+		at project_package.WordIndex.getHighestFrequencyWords(WordIndex.java:216)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:227)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:08:54.425 嚴重 [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [89]
+
+86: 
+87: 			out.println("<br>");
+88: 
+89: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+90: 
+91:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+92:             for (UUID wordID : wordList.keySet()){
+
+
+Stacktrace:] with root cause
+	java.lang.NoClassDefFoundError: project_package/WordIndex$1
+		at project_package.WordIndex.getHighestFrequencyWordsDouble(WordIndex.java:230)
+		at project_package.WordIndex.getHighestFrequencyWords(WordIndex.java:216)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:227)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:10:05.748 嚴重 [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [89]
+
+86: 
+87: 			out.println("<br>");
+88: 
+89: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+90: 
+91:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+92:             for (UUID wordID : wordList.keySet()){
+
+
+Stacktrace:] with root cause
+	java.lang.NoClassDefFoundError: project_package/WordIndex$1
+		at project_package.WordIndex.getHighestFrequencyWordsDouble(WordIndex.java:230)
+		at project_package.WordIndex.getHighestFrequencyWords(WordIndex.java:216)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:227)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:10:11.135 嚴重 [http-nio-8080-exec-10] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [An exception occurred processing [/project.jsp] at line [89]
+
+86: 
+87: 			out.println("<br>");
+88: 
+89: 			Map<UUID, Integer> wordList = wordIndex.getHighestFrequencyWords(pageID, 5);
+90: 
+91:             Map<String, Integer> wordList2 = new HashMap<String,Integer>();
+92:             for (UUID wordID : wordList.keySet()){
+
+
+Stacktrace:] with root cause
+	java.lang.NoClassDefFoundError: project_package/WordIndex$1
+		at project_package.WordIndex.getHighestFrequencyWordsDouble(WordIndex.java:230)
+		at project_package.WordIndex.getHighestFrequencyWords(WordIndex.java:216)
+		at org.apache.jsp.project_jsp._jspService(project_jsp.java:227)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:10:27.353 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 10:10:27.353 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 10:10:29.643 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 10:10:29.644 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 10:10:29.645 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@178f268a')
+25-Apr-2023 10:12:17.662 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 10:12:17.663 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 10:37:34.716 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 10:37:34.716 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 10:37:34.717 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@329bad59')
+25-Apr-2023 10:39:52.738 嚴重 [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Project] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+Type mismatch: cannot convert from String to boolean
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+Syntax error on token ""\" style="", ? expected after this token
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+text cannot be resolved to a variable
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+decoration cannot be resolved to a variable
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+none cannot be resolved to a variable
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+Syntax error on token ";", , expected
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+Type mismatch: cannot convert from String to boolean
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+Syntax error on token ""\" style="", ? expected after this token
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+text cannot be resolved to a variable
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+decoration cannot be resolved to a variable
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+none cannot be resolved to a variable
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+An error occurred at line: [80] in the jsp file: [/project.jsp]
+Syntax error on token ";", , expected
+77: 			out.println("Title: " + urlIndex.getPageTitle(pageID));
+78: 			out.println("<br>");
+79: 			out.println("<br>");
+80: 			out.println("<a href=\"" + urlIndex.getPageURL(pageID) + "\" style="text-decoration:none;" >" + urlIndex.getPageURL(pageID) + "</a>");
+81: 			out.println("<br>");
+82: 			out.println("<br>");
+83: 			//PageMeta pageMeta = urlIndex.getPageMeta(pageID);
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:213)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:829)
+25-Apr-2023 10:52:35.376 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 10:52:35.376 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 11:15:48.776 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 11:15:48.776 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 11:15:48.777 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@33ecbd6c')
+25-Apr-2023 11:18:02.604 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 11:18:02.605 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+25-Apr-2023 11:32:40.188 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+25-Apr-2023 11:32:40.188 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+25-Apr-2023 11:32:40.189 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@329bad59')
+25-Apr-2023 11:32:52.800 資訊 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+25-Apr-2023 11:32:52.800 資訊 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
